@@ -46,8 +46,13 @@ def remove(remove_type,remove_string,hidden,force):
   delete_count = 0
   for row in remove_type_list.split("\n"):
     if row.find(remove_string) != -1:
-      code = row.split()[0]
-      name = row.split()[1]
+      code = name = None
+      if remove_type == "Container":
+        code = row.split()[0]
+        name = row.split()[1]
+      elif remove_type == "Image":
+        code = row.split()[2]
+        name = row.split()[0]
       
       remove_command = ["docker",command[remove_type]["remove"]]
       if force == True:
