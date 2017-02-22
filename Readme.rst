@@ -6,6 +6,10 @@ Docker Remove
 
 Utility to easily remove Docker Container(s)/Image(s) through string matching  
 
++ `Installation`_ 
++ `Usage`_
++ `Examples`_
+
 ------------
 Installation
 ------------
@@ -86,3 +90,9 @@ Remove Container/Image Forcefully
   docker_remove -f --name string
   docker_remove -f -n string
 
+--------
+Examples
+--------
+.. image:: img/screenshot-1.png
+.. image:: img/screenshot-2.png
+.. image:: img/screenshot-3.png
