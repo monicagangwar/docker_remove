@@ -1,6 +1,9 @@
+.. image:: https://badge.fury.io/py/docker_remove.svg
+    :target: https://badge.fury.io/py/docker_remove
 =============
 Docker Remove
 =============
+
 Utility to easily remove Docker Container(s)/Image(s) through string matching  
 
 ------------
