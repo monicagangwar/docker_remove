@@ -22,7 +22,11 @@ def get_options():
   parser.add_argument('--name','-n',help="Flag to remove both Docker container(s) and image(s)")
   parser.add_argument('-a',action='store_true',help="Flag to remove hidden container(s)/image(s)")
   parser.add_argument('-f',action='store_true',help="Flag to forcefully remove container(s)/image(s)")
-  return parser.parse_args()
+  options = parser.parse_args()
+  if options.container == None and options.image == None and options.name == None:
+    parser.print_help()
+    sys.exit()
+  return options
 
 def run_cmd(statement):
   process = subprocess.Popen(statement,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
