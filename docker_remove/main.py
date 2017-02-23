@@ -36,23 +36,22 @@ def docker_running():
   try:
     out,err = run_cmd(["docker","ps"])
     if err:
-      print "Couldn't run Docker due to the following error(s)\n" + err
+      print("Couldn't run Docker due to the following error(s)\n" + err)
       sys.exit()
   except:
-    print "Docker is not running. Make sure Docker is installed and running"
+    print("Docker is not running. Make sure Docker is installed and running")
     sys.exit()
 
 def remove(remove_type,remove_string,hidden,force):
   docker_running()
-  print "Removing " + remove_type + "(s) containing string " + BOLD + remove_string + ENDC
+  print("Removing " + remove_type + "(s) containing string " + BOLD + remove_string + ENDC)
 
   list_command = ["docker",command[remove_type]["list"]]
   if hidden == True:
     list_command.append("-a")
   remove_type_list,_ = run_cmd(list_command)
-  
   delete_count = 0
-  for row in remove_type_list.split("\n"):
+  for row in remove_type_list.decode().split('\n'):
     if row.find(remove_string) != -1:
       code = name =  None
       tag = ""
@@ -72,13 +71,13 @@ def remove(remove_type,remove_string,hidden,force):
       out,err = run_cmd(remove_command)
 
       if not err.split():
-        print OKGREEN + "Successfully removed " + remove_type + " " + name + tag + " with id " + code + ENDC
+        print(OKGREEN + "Successfully removed " + remove_type + " " + name + tag + " with id " + code + ENDC)
         delete_count = delete_count + 1
       else:
-        print WARNING + "Unable to remove " + remove_type + " " + name + tag + " with id " + code + ENDC
-        print err
+        print(WARNING + "Unable to remove " + remove_type + " " + name + tag + " with id " + code + ENDC)
+        print(err)
   
-  print remove_type + "(s) deleted",delete_count
+  print(remove_type + "(s) deleted %d"%delete_count)
 
 def main():
   options = get_options()
