@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import sys
 import os
 
-version = '1.0.3'
+version = '1.0.5'
 
 setup(name='docker_remove',
       version=version,
